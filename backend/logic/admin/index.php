@@ -10,7 +10,7 @@
     header("Location: ../login.php");
   }
 
-  require_once("../functions.php");
+  require_once("../../utility/functions.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +20,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Dashboard | CompleteCMS</title>
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="../../../frontend/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../frontend/css/dashboard.css" rel="stylesheet">
     <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
   </head>
   <body>

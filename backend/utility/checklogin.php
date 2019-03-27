@@ -21,7 +21,7 @@ if(isset($_POST)) {
     $_SESSION['name'] = $name;
     $_SESSION['usertype'] = $usertype;
     if($usertype === 'admin') {
-      header("Location: admin/index.php");
+      header("Location: ../logic/admin/index.php");
     } else {
       header("Location: user/index.php");
     }
