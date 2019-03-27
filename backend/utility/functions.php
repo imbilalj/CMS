@@ -15,4 +15,11 @@
     return $totalno;
   }
 
+  function getUserData() {
+    global $conn;
+    $sql = "SELECT firstname, lastname, email, usertype FROM users";
+    $result = $conn->query($sql);
+    return $result;
+  }
+
 ?>

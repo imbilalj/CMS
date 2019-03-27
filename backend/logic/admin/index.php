@@ -11,6 +11,11 @@
   }
 
   require_once("../../utility/functions.php");
+
+  $noOfUsers = countData("users");
+  //noOfPosts needed!
+  //noOfPages needed!
+  $userData = getUserData();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,10 +44,10 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Dashboard</a></li>
-            <li><a href="pages.html">Pages</a></li>
-            <li><a href="posts.html">Posts</a></li>
-            <li><a href="users.html">Users</a></li>
+            <li class="active"><a href="index.php">Dashboard</a></li>
+            <li><a href="pages.php">Pages</a></li>
+            <li><a href="posts.php">Posts</a></li>
+            <li><a href="users.php">Users</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Welcome, <?php echo $_SESSION['name']; ?></a></li>
@@ -60,7 +65,7 @@
           </div>
           <div class="col-md-2">
             <div class="dropdown create">
-              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Create Content
                 <span class="caret"></span>
               </button>
@@ -88,12 +93,12 @@
         <div class="row">
           <div class="col-md-3">
             <div class="list-group">
-              <a href="index.html" class="list-group-item active main-color-bg">
+              <a href="index.php" class="list-group-item active main-color-bg">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
               </a>
-              <a href="pages.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages <span class="badge">12</span></a>
-              <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge">33</span></a>
-              <a href="users.html" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">22</span></a>
+              <a href="pages.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages <span class="badge">12</span></a>
+              <a href="posts.php" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge">33</span></a>
+              <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge"><?php echo $noOfUsers; ?></span></a>
             </div>
 
             <div class="well">
@@ -120,7 +125,7 @@
               <div class="panel-body">
                 <div class="col-md-3">
                   <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo countData("users"); ?></h2>
+                    <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo $noOfUsers; ?></h2>
                     <h4>Users</h4>
                   </div>
                 </div>
@@ -138,7 +143,7 @@
                 </div>
                 <div class="col-md-3">
                   <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> 12,334</h2>
+                    <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> 143</h2>
                     <h4>Visitors</h4>
                   </div>
                 </div>
@@ -152,17 +157,25 @@
                 </div>
                 <div class="panel-body">
                   <table class="table table-striped table-hover">
-                      <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Joined</th>
-                      </tr>
-                      <tr>
-                        <td>Jill Smith</td>
-                        <td>jillsmith@gmail.com</td>
-                        <td>Dec 12, 2016</td>
-                      </tr>
-                    </table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>User Type</th>
+                    </tr>
+                    <?php
+                      if($userData->num_rows > 0) {
+                        while($row = $userData->fetch_assoc()) {
+                          ?>
+                          <tr>
+                            <td><?php echo $row['firstname']. " ". $row['lastname']; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td><?php echo ucwords($row['usertype']); ?></td>
+                          </tr>
+                          <?php
+                        }
+                      }
+                    ?>
+                  </table>
                 </div>
               </div>
           </div>
@@ -170,9 +183,7 @@
       </div>
     </section>
 
-    <footer id="footer">
-      <p>Copyright Complete CMS &copy; 2019</p>
-    </footer>
+    <?php include('../../../frontend/html/footer.html'); ?>
 
     <!-- Modals -->
 
