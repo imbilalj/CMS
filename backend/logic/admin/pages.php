@@ -169,9 +169,7 @@
       </div>
     </section>
 
-    <footer id="footer">
-      <p>Copyright AdminStrap, &copy; 2017</p>
-    </footer>
+    <?php include('../../../frontend/html/footer.html'); ?>
 
     <!-- Modals -->
 
