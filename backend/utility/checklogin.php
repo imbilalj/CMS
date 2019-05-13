@@ -22,12 +22,16 @@ if(isset($_POST)) {
     $_SESSION['usertype'] = $usertype;
     if($usertype === 'admin') {
       header("Location: ../logic/admin/index.php");
-    } else {
+		} 
+		else if ($usertype === 'user'){
+			header("Location: ../logic/admin/edit.html");
+		} 
+		else {
       header("Location: user/index.php");
     }
  	} else {
  		$_SESSION['loginError'] = $conn->error;
- 		header("Location: login.php");
+ 		header("Location: ../logic/login.php");
 		exit();
  	}
 

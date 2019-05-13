@@ -22,7 +22,12 @@ if(isset($_SESSION['user_id'])) {
 
     <?php
 
+
       include('../../frontend/html/header.html');
+
+      if (isset($_GET['reg'])){
+        echo "<h2><center>Registered</center></h2>";
+      }
 
       include('../../frontend/html/login-form.html');
 

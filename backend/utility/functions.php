@@ -15,9 +15,33 @@
     return $totalno;
   }
 
+  function countPost($column) {
+    global $conn;
+    $sql = "SELECT * FROM". " " . $column;
+    $result = $conn->query($sql);
+    if($result->num_rows > 0) {
+      $totalno = $result->num_rows;
+    } else {
+      $totalno = 0;
+    }
+    return $totalno;
+  }
+
+  function countCategories($column) {
+    global $conn;
+    $sql = "SELECT * FROM". " " . $column;
+    $result = $conn->query($sql);
+    if($result->num_rows > 0) {
+      $totalno = $result->num_rows;
+    } else {
+      $totalno = 0;
+    }
+    return $totalno;
+  }
+
   function getUserData() {
     global $conn;
-    $sql = "SELECT firstname, lastname, email, usertype FROM users";
+    $sql = "SELECT id,firstname, lastname, email, usertype FROM users";
     $result = $conn->query($sql);
     return $result;
   }

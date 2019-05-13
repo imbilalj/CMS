@@ -13,7 +13,8 @@
   require_once("../../utility/functions.php");
 
   $noOfUsers = countData("users");
-  //noOfPosts needed!
+  $noOfPosts = countPost("posts");
+  $noOfCategories = countCategories("categories");
   //noOfPages needed!
 ?>
 <!DOCTYPE html>
@@ -47,6 +48,7 @@
             <li class="active"><a href="pages.php">Pages</a></li>
             <li><a href="posts.php">Posts</a></li>
             <li><a href="users.php">Users</a></li>
+             <li><a href="category.php">Categories</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Welcome, <?php echo $_SESSION['name']; ?></a></li>
@@ -96,9 +98,10 @@
               <a href="index.php" class="list-group-item active main-color-bg">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
               </a>
-              <a href="pages.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages <span class="badge">12</span></a>
-              <a href="posts.php" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge">33</span></a>
+              <a href="pages.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages <span class="badge">4</span></a>
+              <a href="posts.php" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge"><?php echo $noOfPosts; ?></span></a>
               <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge"><?php echo $noOfUsers; ?></span></a>
+              <a href="category.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge"><?php echo  $noOfCategories;?></span></a>
             </div>
 
             <div class="well">
@@ -116,20 +119,21 @@
           </div>
             </div>
           </div>
-          <div class="col-md-9">
+          <div id = "page" class="col-md-9">
             <!-- Website Overview -->
             <div class="panel panel-default">
               <div class="panel-heading main-color-bg">
+              <button id = "hide" style = "float:right;" class = "btn btn-default btn-xs">Hide</button>
                 <h3 class="panel-title">Pages</h3>
               </div>
               <div class="panel-body">
                 <div class="row">
-                      <div class="col-md-12">
+                      <!-- <div class="col-md-12">
                           <input class="form-control" type="text" placeholder="Filter Pages...">
-                      </div>
+                      </div> -->
                 </div>
                 <br>
-                <table class="table table-striped table-hover">
+                <table id = "tablehide" class="table table-striped table-hover">
                       <tr>
                         <th>Title</th>
                         <th>Published</th>
@@ -168,6 +172,7 @@
         </div>
       </div>
     </section>
+
 
     <?php include('../../../frontend/html/footer.html'); ?>
 
@@ -222,6 +227,26 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
+
+
+<script >
+  var x = 1;
+	$(document).ready(function(){
+		$('#hide').click(function(){
+			$('#tablehide').toggle();
+       //$('#hide').html("Show");
+
+      if (x%2 != 0){
+        $('#hide').html("Show");
+      } 
+      else 
+        $('#hide').html("Hide");
+      x++  
+
+		});
+	});
+</script>

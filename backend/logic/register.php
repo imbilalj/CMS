@@ -23,6 +23,10 @@ if(isset($_SESSION['user_id'])) {
     <?php
 
       include('../../frontend/html/header.html');
+      
+      if(isset($_GET['reg'])){
+        echo "<center><h2>Not Registered</h2></center>";
+      }
 
       include('../../frontend/html/register.html');
 

@@ -6,9 +6,6 @@
     if(strcmp($_SESSION['usertype'], 'admin') != 0) {
       header("Location: ../index.php");
     }
-    // else if (strcmp($_SESSION['usertype'],'user') !=0 ){
-    //   header("Location:../edit.php");
-    // }
   } else {
     header("Location: ../login.php");
   }
@@ -48,11 +45,11 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Dashboard</a></li>
+            <li><a href="index.php">Dashboard</a></li>
             <li><a href="pages.php">Pages</a></li>
             <li><a href="posts.php">Posts</a></li>
             <li><a href="users.php">Users</a></li>
-            <li><a href="category.php">Categories</a></li>
+            <li class="active"><a href="category.php">Categories</a></li>
 
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -102,10 +99,10 @@
               <a href="index.php" class="list-group-item active main-color-bg">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
               </a>
-              <a href="pages.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages <span class="badge">4</span></a>
+              <a href="pages.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages <span class="badge">12</span></a>
               <a href="posts.php" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge"><?php echo $noOfPosts; ?></span></a>
               <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge"><?php echo $noOfUsers; ?></span></a>
-              <a href="category.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge"><?php echo  $noOfCategories;?></span></a>
+              <a href="category.php.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge"><?php echo  $noOfCategories;?></span></a>
             </div>
 
 
@@ -124,73 +121,91 @@
           </div>
             </div>
           </div>
-          <div class="col-md-9">
+<section id = "main">
+          <div id = "page" class="col-md-9">
             <!-- Website Overview -->
             <div class="panel panel-default">
               <div class="panel-heading main-color-bg">
-                <h3 class="panel-title">Website Overview</h3>
+              <button id = "hide" style = "float:right;" class = "btn btn-default btn-xs">Hide</button>
+                <h3 class="panel-title">Pages</h3>
               </div>
               <div class="panel-body">
-                <div class="col-md-3">
-                  <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo $noOfUsers; ?></h2>
-                    <h4>Users</h4>
-                  </div>
+                <div class="row">
+                      <div class="col-md-12">
+                          <form action = "addcategories.php" method = "POST">
+                            <input class="form-control" name = "category_name" type="text" placeholder="Add Category" value = "" required><br>
+                          <input class = "btn btn-primary" type = "submit"> 
+                          </form>
+
+                          <form action = "searchcategory.php" method = "POST"><br>
+                          <input class="form-control" name ="category_search" type="text" placeholder="Search" required><br>
+                          <input class = "btn btn-success" type = "submit" value = "Search">
+                          </form> 
+
+                          <?php
+                            if (isset($_GET['pub'])){
+                          //  echo  '<center><h3>'.''.$_GET["pub"].' '.'</h3><center>';
+                          //     sleep(5);
+                          //     $_GET['pub'] = "";
+                    
+                            }
+                            ?>
+                      </div>
                 </div>
-                <div class="col-md-3">
-                  <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 4</h2>
-                    <h4>Pages</h4>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> <?php echo $noOfPosts; ?></h2>
-                    <h4>Posts</h4>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> <?php echo $noOfCategories; ?></h2>
-                    <h4>Categories</h4>
-                  </div>
-                </div>
+                <br>
+                <table  class="table table-striped table-hover">
+<!--     
+                <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>User Type</th>
+                        <th></th>
+                      </tr>
+-->      
+                     
+                    </table>
+                    <table id = "tablehide" class="table table-striped table-hover">
+                      <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Created</th>
+                        <th></th>
+                      </tr>
+                      <?php
+                      $str =  "Select * from categories";
+                          $result = $conn->query($str);
+                          if ($result->num_rows > 0){
+                            while($row = $result->fetch_assoc()){
+                            $category_id = $row["category_id"];
+                            $category_name = $row["category_name"];
+                            $category_date_published = $row["category_date_published"];
+                           
+                          
+                            echo "<tr>";
+                            echo  "<td>$category_id</td>";
+                            echo  "<td>$category_name</td>";
+                            echo  "<td>$category_date_published</td>";
+                            echo " <td><a class='btn btn-danger' href='deletecategory.php?categoryid=$category_id'>Delete</a></td>";
+                            echo  "</tr>";  
+                        }
+                      } 
+                                  
+                       
+                      ?>
+
+                        </script>
+          
+                      <tr>
+                    </table>
               </div>
               </div>
 
-              <!-- Latest Users -->
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Latest Users</h3>
-                </div>
-                <div class="panel-body">
-                  <table class="table table-striped table-hover">
-                    <tr>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>User Type</th>
-                    </tr>
-                    <?php
-                      if($userData->num_rows > 0) {
-                        while($row = $userData->fetch_assoc()) {
-                          ?>
-                          <tr>
-                            <td><?php echo $row['firstname']. " ". $row['lastname']; ?></td>
-                            <td><?php echo $row['email']; ?></td>
-                            <td><?php echo ucwords($row['usertype']); ?></td>
-                          </tr>
-                          <?php
-                        }
-                      }
-                    ?>
-                  </table>
-                </div>
-              </div>
           </div>
         </div>
       </div>
     </section>
-
+          
+                    
     <?php include('../../../frontend/html/footer.html'); ?>
 
     <!-- Modals -->
@@ -247,3 +262,23 @@
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
+
+
+
+<script >
+  var x = 1;
+	$(document).ready(function(){
+		$('#hide').click(function(){
+			$('#tablehide').toggle();
+       //$('#hide').html("Show");
+
+      if (x%2 != 0){
+        $('#hide').html("Show");
+      } 
+      else 
+        $('#hide').html("Hide");
+      x++  
+
+		});
+	});
+</script>

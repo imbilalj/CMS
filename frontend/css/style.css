@@ -137,7 +137,7 @@ header a:hover {
 
 footer {
   margin-top: 20px;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
   background-color: #028BC0;
   color: #ffffff;
@@ -149,7 +149,7 @@ footer {
 
 .container-form {
   width: 50%;
-  height: 500px;
+  height: 550px;
   background-color: #028BC0;
   margin: auto;
   color: #ffffff;
@@ -157,8 +157,9 @@ footer {
   border-radius: 20px;
 }
 
+
 .container-form h2 {
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 .container-form input {
