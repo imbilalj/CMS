@@ -15,6 +15,21 @@
     <link href="../../frontend/css/dashboard.css" rel="stylesheet">
     <link rel="stylesheet" href="../../frontend/css/style.css">
     <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+  <style>
+    #p1 {
+  width: 100px;
+  height: 100px;
+  color: black;
+  -webkit-transition: width 2s, height 4s; /* For Safari 3.1 to 6.0 */
+  transition: font-size 0.5s;
+}
+
+#p1:hover {
+ 	font-size:40px;
+
+}
+    </style>
+
   </head>
   <body>
 
@@ -84,7 +99,7 @@
 
                         
                         echo "<tr style = 'height:200px;'>";
-                        echo  "<p id = 'posttitle'><h2><b>$post_title</b></h2></p><br>";
+                        echo  "<p id = 'posttitle'><h2 id = 'p1' style = 'text-shadow: 2px 2px powderblue;'><b>$post_title</b></h2></p><br>";
                         echo  "<p>Hello, My Name is Thanos.</p><br><hr>";
                         echo  "<p style = 'font-size: 12px;'> <span>Author :</span> $post_author_name</p>";
                         echo  "<p style = 'font-size: 12px;'><span>Category :</span>$category_name</p>";

@@ -153,7 +153,6 @@
                           if ($result->num_rows > 0){
                             while($row = $result->fetch_assoc()){
                             $post_id = $row["post_id"];
-                            $author_id = $row["author_id"];
 
                             $post_author_id = $row["post_author_id"];
 
@@ -166,7 +165,7 @@
                             
                 
                       <tr>
-                        <td><?php echo getAuthorNameById($author_id); ?></td>
+                        <td><?php echo getAuthorNameById($post_author_id); ?></td>
                         <td><?php echo $post_title; ?></td>
                         <?php
                           if ($post_status == 1){
@@ -185,18 +184,18 @@
                       </tr>
                             <?php
 
-                            echo "<tr>";
-                            echo  "<td>$post_id</td>";
-                            echo  "<td>$post_author_id</td>";
-                            echo  "<td>$post_title</td>";
-                            if ($post_status == 1){
-                            echo  '<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>';}
-                            else
-                            echo  '<td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>';
-                            echo  "<td>$category_id</td>";
-                            echo  "<td>$post_comment_count</td>";
-                            echo "<td><a class='btn btn-danger' href='deletepost.php?id=$post_id'>Delete</a></td>";
-                            echo  "</tr>";  
+                            // echo "<tr>";
+                            // echo  "<td>$post_id</td>";
+                            // echo  "<td>$post_author_id</td>";
+                            // echo  "<td>$post_title</td>";
+                            // if ($post_status == 1){
+                            // echo  '<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>';}
+                            // else
+                            // echo  '<td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>';
+                            // echo  "<td>$category_id</td>";
+                            // echo  "<td>$post_comment_count</td>";
+                            // echo "<td><a class='btn btn-danger' href='deletepost.php?id=$post_id'>Delete</a></td>";
+                            // echo  "</tr>";  
                         }
                       } 
                       ?>
