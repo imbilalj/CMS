@@ -166,36 +166,28 @@
                     </table>
                     <table id = "tablehide" class="table table-striped table-hover">
                       <tr>
-                        <th>Id</th>
                         <th>Name</th>
                         <th>Created</th>
                         <th></th>
                       </tr>
                       <?php
-                      $str =  "Select * from categories";
-                          $result = $conn->query($str);
-                          if ($result->num_rows > 0){
-                            while($row = $result->fetch_assoc()){
+                        $str =  "Select * from categories";
+                        $result = $conn->query($str);
+                        if ($result->num_rows > 0){
+                          while($row = $result->fetch_assoc()){
                             $category_id = $row["category_id"];
                             $category_name = $row["category_name"];
                             $category_date_published = $row["category_date_published"];
-                           
-                          
-                            echo "<tr>";
-                            echo  "<td>$category_id</td>";
-                            echo  "<td>$category_name</td>";
-                            echo  "<td>$category_date_published</td>";
-                            echo " <td><a class='btn btn-danger' href='deletecategory.php?categoryid=$category_id'>Delete</a></td>";
-                            echo  "</tr>";  
-                        }
-                      } 
-                                  
-                       
                       ?>
-
-                        </script>
-          
                       <tr>
+                        <td><?php echo $category_name; ?></td>
+                        <td><?php echo $category_date_published; ?></td>
+                        <td><a class="btn btn-danger" href="deletecategory.php?categoryid=<?php echo $category_id; ?>">Delete</a></td>
+                      </tr>
+                      <?php
+                        }
+                      }
+                      ?>
                     </table>
               </div>
               </div>

@@ -149,13 +149,15 @@
                             $name = $row['firstname']." ".$row['lastname'];
                             $email = $row['email'];
                             $usertype = ucwords($row['usertype']);
-                             echo "<tr>";
-                             echo "<td>$userid</td>";
-                             echo "<td>$name</td>"; 
-                             echo "<td>$email</td>"; 
-                             echo "<td>$usertype</td>";
-                             echo "<td><a class='btn btn-danger' href='deleteuser.php?userid=$userid'>Delete</a></td>";  
-                            echo "</tr>";
+                      ?>
+                      <tr>
+                        <td><?php echo $userid; ?></td>
+                        <td><?php echo $name; ?></td>
+                        <td><?php echo $email; ?></td>
+                        <td><?php echo $usertype; ?></td>
+                        <td><a class="btn btn-danger" href="deleteuser.php?userid=<?php echo $userid; ?>">Delete</a></td>
+                      </tr>
+                      <?php
                           }
                         }
                       ?>
