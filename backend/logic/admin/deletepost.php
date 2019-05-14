@@ -13,7 +13,7 @@ if(isset($_SESSION['user_id'])) {
 include('../../utility/db-connect.php');
 
 if (isset($_GET['id'])){
-    $post_id = $_GET['id'];
+    $post_id = mysqli_real_escape_string($conn,$_GET['id']);
     $str = "DELETE from posts where post_id = $post_id";
     $result = $conn->query($str);
     //echo $result;

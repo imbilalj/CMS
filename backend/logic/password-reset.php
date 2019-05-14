@@ -14,9 +14,9 @@
 <?php
 
     if(isset($_POST)){
-        $email = $_POST['email'];
+        $email = mysqli_real_escape_string($conn,$_POST['email']);
         //echo $email;
-        $str = "SELECT question FROM registration WHERE email ='$email'";
+        $str = "SELECT question FROM users WHERE email ='$email'";
         $result = $conn->query($str);
     
         if($result->num_rows > 0) {
@@ -27,7 +27,7 @@
         header("Location:../../backend/logic/passwordresetconfirm.php?question=$question&email=$email");
     }
     else {
-        header("Location:../../frontend/html/password-reset/html");
+        header("Location:email-password.php");
     }
 
 
